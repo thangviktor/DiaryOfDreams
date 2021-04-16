@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
 
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Diary> diaries = new ArrayList<>();
     List<Diary> searchedList = new ArrayList<>();
     DiaryAdapter adapterDiary;
-
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("ClickableViewAccessibility")
