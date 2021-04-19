@@ -1,4 +1,4 @@
-package com.j.projectno0;
+package com.j.projectno0.data;
 
 import java.io.Serializable;
 

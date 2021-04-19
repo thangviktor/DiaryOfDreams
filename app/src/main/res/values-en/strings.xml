@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name"><b>Diary of Dreams</b></string>
     <string name="app_edit_name">Write diary</string>
-    <string name="app_infor_vs">Version 1.0</string>
+    <string name="app_infor_vs">"Version 1.0 "</string>
     <string name="app_infor_num">Total number of diaries: %d</string>
     <string name="about">Information</string>
     <string name="cancel">Cancel</string>
@@ -24,4 +24,5 @@
     <string name="day">Ngày</string>
     <string name="filter">Filter</string>
     <string name="clear_list">Xoá danh sách</string>
+    <string name="diaries">Diaries</string>
 </resources>

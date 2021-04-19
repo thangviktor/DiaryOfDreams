@@ -1,40 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".ContactActivity">
+    tools:openDrawer="start"
+    tools:ignore="ContentDescription">
 
-    <ImageView
-        android:id="@+id/appinforimage"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_height"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            tools:context=".activity.ContactActivity">
+
+            <ImageView
+                android:id="@+id/appinforimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:src="@drawable/diary"
+                tools:ignore="ContentDescription"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/appInforNum"
+                style="@style/AppInfor"
+                android:text="@string/app_infor_num"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/appInforVs"
+                style="@style/AppInfor"
+                android:text="@string/app_infor_vs"
+                android:layout_marginBottom="@dimen/margin_standard" />
+
+            <TextView
+                android:id="@+id/appInforAuthor"
+                style="@style/AppInfor"
+                android:text="@string/app_infor_auth"
+                android:layout_marginBottom="@dimen/margin_large" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/diary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_drawer_actions" />
 
-    <TextView
-        android:id="@+id/appinfornum"
-        style="@style/AppInfor"
-        android:text="@string/app_infor_num"
-        app:layout_constraintBottom_toTopOf="@+id/appinforvs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appinforimage" />
-
-    <TextView
-        android:id="@+id/appinforvs"
-        style="@style/AppInfor"
-        android:text="@string/app_infor_vs"
-        android:layout_marginBottom="110dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

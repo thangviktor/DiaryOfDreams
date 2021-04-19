@@ -1,4 +1,4 @@
-package com.j.projectno0;
+package com.j.projectno0.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
 
-//    private static final String TAG = "SQLite";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Diary_Dream";
 

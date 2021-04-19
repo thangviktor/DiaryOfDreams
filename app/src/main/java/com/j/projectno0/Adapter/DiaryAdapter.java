@@ -1,11 +1,10 @@
-package com.j.projectno0;
+package com.j.projectno0.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.j.projectno0.data.Diary;
+import com.j.projectno0.R;
 
 import java.util.ArrayList;
 
@@ -96,10 +98,10 @@ public class DiaryAdapter extends BaseAdapter {
             }
         }
 
-        if (anim) {
-            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim_view);
-            convertView.startAnimation(animation);
-        }
+//        if (anim) {
+//            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim_view);
+//            convertView.startAnimation(animation);
+//        }
 
         return convertView;
     }

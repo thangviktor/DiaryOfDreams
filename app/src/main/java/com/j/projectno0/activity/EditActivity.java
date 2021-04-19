@@ -1,8 +1,9 @@
-package com.j.projectno0;
+package com.j.projectno0.activity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.j.projectno0.R;
+import com.j.projectno0.data.Database;
+import com.j.projectno0.data.Diary;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,17 +41,20 @@ public class EditActivity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        diaryDate = findViewById(R.id.diarydate);
-        diaryTitle = findViewById(R.id.diarytitle);
-        diaryContent = findViewById(R.id.diarycontent);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        diaryDate = findViewById(R.id.diaryDate);
+        diaryTitle = findViewById(R.id.diaryTitle);
+        diaryContent = findViewById(R.id.diaryContent);
 
         intent = getIntent();
         diary = (Diary) intent.getSerializableExtra("diary");
@@ -67,8 +77,7 @@ public class EditActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         calendar.set(year, month, dayOfMonth);
-                        date = dateFormat.format(calendar.getTime());
-                        diaryDate.setText(date);
+                        diaryDate.setText(dateFormat.format(calendar.getTime()));
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
                 datePickerDialog.show();
@@ -93,6 +102,7 @@ public class EditActivity extends AppCompatActivity {
             case R.id.save:
                 Database database = new Database(this);
 
+                date = diaryDate.getText().toString();
                 title = diaryTitle.getText().toString();
                 content = diaryContent.getText().toString();
 
