@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -32,7 +33,8 @@ public class ContactActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView textView = findViewById(R.id.appInforNum);
+        TextView tvDiariesNum = findViewById(R.id.tvDiariesNum);
+        TextView tvAppInfor = findViewById(R.id.appInfor);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,7 +42,8 @@ public class ContactActivity extends AppCompatActivity {
 
         Database database = new Database(this);
         navigationView.getMenu().findItem(R.id.menu_about).setChecked(true);
-        textView.setText(getString(R.string.app_infor_num, database.getDiaryCount()));
+        tvDiariesNum.setText(getString(R.string.diaries_num, database.getDiaryCount()));
+        tvAppInfor.setText(Html.fromHtml(getString(R.string.app_infor)));
 
         navigationView.setNavigationItemSelectedListener(onNavSelected());
     }
@@ -57,12 +60,25 @@ public class ContactActivity extends AppCompatActivity {
     /*************************************** Event Function ***************************************/
     private NavigationView.OnNavigationItemSelectedListener onNavSelected() {
         return new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.menu_diaries) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                switch (item.getItemId()) {
+                    case R.id.menu_diaries:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        finish();
+                        break;
+                    case R.id.menu_about:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.menu_setting:
+                        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        finish();
+                        break;
                 }
+
                 return false;
             }
         };

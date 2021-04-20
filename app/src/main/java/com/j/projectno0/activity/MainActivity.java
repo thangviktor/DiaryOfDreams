@@ -21,10 +21,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.j.projectno0.Adapter.ViewPagerMainAdapter;
 import com.j.projectno0.R;
+import com.j.projectno0.fragment.DayFragment;
+import com.j.projectno0.fragment.NightFragment;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,15 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.getMenu().findItem(R.id.menu_diaries).setChecked(true);
         ViewPagerMainAdapter vpAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), getLifecycle());
+        vpAdapter.addFragment(DayFragment.newInstance());
+        vpAdapter.addFragment(NightFragment.newInstance());
         vpMain.setAdapter(vpAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tabMain);
         new TabLayoutMediator(tabLayout, vpMain, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                if (position == 1)
-                    tab.setText("NIGHT");
-                else tab.setText("DAY");
+                if (position == 0)
+                    tab.setText(getString(R.string.day).toUpperCase());
+                else tab.setText(getString(R.string.night).toUpperCase());
             }
         }).attach();
 
@@ -71,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         // Open Drawer Layout
         navigationView.setNavigationItemSelectedListener(onNavSelected());
     }
-
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -86,11 +86,21 @@ public class MainActivity extends AppCompatActivity {
     /*************************************** Event Function ***************************************/
     private NavigationView.OnNavigationItemSelectedListener onNavSelected() {
         return new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.menu_about) {
-                    startActivity(new Intent(getApplicationContext(), ContactActivity.class));
-                    finish();
+                switch (item.getItemId()) {
+                    case R.id.menu_diaries:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.menu_about:
+                        startActivity(new Intent(getApplicationContext(), ContactActivity.class));
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.menu_setting:
+                        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
                 }
 
                 return false;

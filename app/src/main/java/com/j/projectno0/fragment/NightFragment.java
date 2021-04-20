@@ -9,7 +9,7 @@ import com.j.projectno0.R;
 
 public class NightFragment extends BaseFragment {
 
-    private NightFragment() {
+    public NightFragment() {
     }
 
     public static NightFragment newInstance() {

@@ -39,26 +39,19 @@
                 android:layout_weight="1"/>
 
             <TextView
-                android:id="@+id/appInforNum"
+                android:id="@+id/tvDiariesNum"
                 style="@style/AppInfor"
-                android:text="@string/app_infor_num"
+                android:text="@string/diaries_num"
                 android:layout_weight="1"/>
 
             <TextView
-                android:id="@+id/appInforVs"
+                android:id="@+id/appInfor"
                 style="@style/AppInfor"
-                android:text="@string/app_infor_vs"
+                android:text="@string/app_infor"
                 android:layout_marginBottom="@dimen/margin_standard" />
-
-            <TextView
-                android:id="@+id/appInforAuthor"
-                style="@style/AppInfor"
-                android:text="@string/app_infor_auth"
-                android:layout_marginBottom="@dimen/margin_large" />
 
         </LinearLayout>
     </LinearLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -66,6 +59,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemIconTint="@color/drawer_item"
+        app:itemTextColor="@color/drawer_item"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_drawer_actions" />
 

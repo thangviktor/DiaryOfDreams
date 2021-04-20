@@ -12,7 +12,7 @@ import com.j.projectno0.R;
 
 public class DayFragment extends BaseFragment{
 
-    private DayFragment() {
+    public DayFragment() {
     }
 
     public static DayFragment newInstance() {

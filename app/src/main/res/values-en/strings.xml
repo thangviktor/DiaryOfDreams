@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"><b>Diary of Dreams</b></string>
+    <string name="app_name">Diary of Dreams</string>
     <string name="app_edit_name">Write diary</string>
-    <string name="app_infor_vs">"Version 1.0 "</string>
-    <string name="app_infor_num">Total number of diaries: %d</string>
+    <string name="diaries_num">Total number of diaries: %d</string>
     <string name="about">Information</string>
-    <string name="cancel">Cancel</string>
     <string name="bar_list">List</string>
     <string name="bar_grid">Grid</string>
     <string name="bar_calendar">Calendar</string>
@@ -14,15 +12,29 @@
     <string name="empty_note2">Click</string>
     <string name="empty_note3">to create a new</string>
     <string name="feedback">Contact</string>
-    <string name="ok">Agree</string>
     <string name="title">Subject</string>
     <string name="search">Search</string>
-    <string name="setting">Setting</string>
-    <string name="noresult">No result</string>
+    <string name="setting">Settings</string>
     <string name="delete">Delete</string>
     <string name="saved">Saved</string>
-    <string name="day">Ngày</string>
     <string name="filter">Filter</string>
     <string name="clear_list">Xoá danh sách</string>
     <string name="diaries">Diaries</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
+
+    <string name="app_infor">
+        <![CDATA[
+            <p>Version 1.0</p>
+            <h6>Viktor J.</h6>
+        ]]>
+    </string>
+    <string name="display">Display</string>
+    <string name="language">Select Language</string>
+    <string name="theme">Select Theme</string>
+
+    <string-array name="languages">
+        <item>Vietnamese</item>
+        <item>English</item>
+    </string-array>
 </resources>

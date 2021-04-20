@@ -1,36 +1,62 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name"><b>Nhật ký Giấc mơ</b></string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nhật ký Giấc mơ</string>
     <string name="app_edit_name">Viết nhật ký</string>
-    <string name="app_infor_vs">Phiên bản 1.0</string>
-    <string name="app_infor_auth" translatable="false">Viktor J.</string>
-    <!--    <string name="app_infor_name">Nhật ký giấc mơ</string>-->
-    <string name="app_infor_num">Tổng số bản nhật ký: %d</string>
+    <string name="diaries_num">Tổng số bản nhật ký : %d</string>
     <string name="about">Thông tin</string>
-    <string name="cancel">Huỷ</string>
     <string name="content">Nội dung</string>
-    <!--    <string name="bar_day">Ngày</string>-->
-    <!--    <string name="bar_night">Đêm</string>-->
     <string name="bar_list">Danh sách</string>
     <string name="bar_grid">Bảng</string>
     <string name="bar_calendar">Lịch</string>
-    <string name="date" translatable="false" tools:ignore="MissingTranslation">%s</string>
-    <string name="day">DAY</string>
+    <string name="date" translatable="false">%s</string>
     <string name="empty_note">Danh sách trống</string>
     <string name="empty_note2">Nhấn</string>
     <string name="empty_note3">để tạo mới</string>
     <string name="feedback">Hỗ trợ</string>
-    <!--    <string name="list_name">Danh sách nhật ký</string>-->
-    <string name="ok">Đồng ý</string>
     <string name="title">Chủ đề</string>
     <string name="search">Tìm kiếm</string>
     <string name="setting">Cài đặt</string>
-    <string name="noresult">Không có kết quả phù hợp</string>
     <string name="delete">Xoá</string>
     <string name="saved">Đã lưu</string>
     <string name="filter">Lọc</string>
     <string name="clear_list">Clear List</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
     <string name="diaries">Nhật ký</string>
+    <string name="day">Ngày</string>
+    <string name="night">Đêm</string>
+
+    <string name="app_infor">
+        <![CDATA[
+            <p>Phiên bản 1.0</p>
+            <h6>Viktor J.</h6>
+        ]]>
+    </string>
+
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="display">Hiển thị</string>
+    <string name="language">Chọn ngôn ngữ</string>
+    <string name="theme">Chọn giao diện</string>
+
+    <string-array name="languages">
+        <item>Tiếng Việt</item>
+        <item>Tiếng Anh</item>
+    </string-array>
+
+    <!-- Transfer language-->
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_vietnamese" translatable="false">Tiếng Việt</string>
+
+    <string-array name="language_names">
+        <item>@string/language_english</item>
+        <item>@string/language_vietnamese</item>
+    </string-array>
+
+    <string name="language_english_code" translatable="false">en</string>
+    <string name="language_vietnamese_code" translatable="false">vi</string>
+
+    <string-array name="language_codes">
+        <item>@string/language_english_code</item>
+        <item>@string/language_vietnamese_code</item>
+    </string-array>
 
 </resources>

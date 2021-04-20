@@ -14,13 +14,9 @@ import java.util.ArrayList;
 public class ViewPagerMainAdapter extends FragmentStateAdapter {
     private static final ArrayList<Fragment> fragments = new ArrayList<>();
 
-    static {
-        fragments.add(DayFragment.newInstance());
-        fragments.add(NightFragment.newInstance());
-    }
-
     public ViewPagerMainAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
+        fragments.clear();
     }
 
     @NonNull
@@ -32,5 +28,9 @@ public class ViewPagerMainAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return fragments.size();
+    }
+
+    public void addFragment(Fragment fragment) {
+        fragments.add(fragment);
     }
 }

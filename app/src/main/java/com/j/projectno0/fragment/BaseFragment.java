@@ -109,14 +109,14 @@ public class BaseFragment extends Fragment {
 
                 final Diary diary = diaries.get(position);
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage(getString(R.string.delete) + "\"" + diary.getTitle() + "\" ?");
+                builder.setMessage(getString(R.string.delete) + " \"" + diary.getTitle() + "\" ?");
                 builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteDiary(diary.getId());
                     }
                 });
-                builder.setNegativeButton(R.string.cancel, null);
+                builder.setNegativeButton(android.R.string.cancel, null);
                 builder.show();
 
                 return true;
