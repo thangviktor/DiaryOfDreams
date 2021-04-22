@@ -51,6 +51,7 @@ public class EditActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.app_edit_name));
 
         diaryDate = findViewById(R.id.diaryDate);
         diaryTitle = findViewById(R.id.diaryTitle);

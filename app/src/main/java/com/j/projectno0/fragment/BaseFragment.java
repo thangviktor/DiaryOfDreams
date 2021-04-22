@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -33,8 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class BaseFragment extends Fragment {
 
-    private int columnNum;
-    private SharedPreferences sharedPreferences;
+    protected int columnNum = 1;
 
     protected Database database;
     protected final ArrayList<Diary> diaries = new ArrayList<>();
@@ -58,13 +59,13 @@ public class BaseFragment extends Fragment {
         displayAddButton();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
 
-        sharedPreferences = getActivity().getSharedPreferences("view_type", MODE_PRIVATE);
-        columnNum = sharedPreferences.getInt("num_of_col", 1);
+        gridViewDiary.setNumColumns(columnNum);
 
         // Click on a diary in list
         gridViewDiary.setOnItemClickListener(onDiaryItemClick());
@@ -89,13 +90,16 @@ public class BaseFragment extends Fragment {
                 showPopupFilter();
                 break;
             case R.id.menu_bar_list:
-                gridViewDiary.setNumColumns(1);
+                columnNum = 1;
                 break;
             case R.id.menu_bar_grid:
-                gridViewDiary.setNumColumns(2);
+                columnNum = 2;
                 break;
         }
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        gridViewDiary.setNumColumns(columnNum);
+        SharedPreferences.Editor editor = getActivity()
+                .getSharedPreferences("DDPreferences", MODE_PRIVATE)
+                .edit();
         editor.putInt("num_of_col", columnNum);
         editor.apply();
         return super.onOptionsItemSelected(item);

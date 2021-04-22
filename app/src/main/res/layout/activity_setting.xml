@@ -18,31 +18,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/tab_height"
-        android:paddingLeft="@dimen/margin_large"
         tools:context=".activity.SettingActivity">
 
         <TextView
             android:id="@+id/tvDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_bigger"
+            android:paddingLeft="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_vertical"
             android:text="@string/display"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_big"/>
 
         <TextView
             android:id="@+id/tvLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_standard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_bigger"
+            android:paddingLeft="@dimen/margin_large"
+            android:gravity="center_vertical"
+            android:background="@color/item_settings"
             android:text="@string/language"
             android:textSize="@dimen/text_size_standard"/>
 
         <TextView
             android:id="@+id/tvTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_standard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_bigger"
+            android:paddingLeft="@dimen/margin_large"
+            android:gravity="center_vertical"
+            android:background="@color/item_settings"
             android:text="@string/theme"
             android:textSize="@dimen/text_size_standard"/>
     </LinearLayout>

@@ -12,11 +12,12 @@ import com.j.projectno0.R;
 
 public class DayFragment extends BaseFragment{
 
-    public DayFragment() {
+    public DayFragment(int columnNum) {
+        super.columnNum = columnNum;
     }
 
-    public static DayFragment newInstance() {
-        return new DayFragment();
+    public static DayFragment newInstance(int columnNum) {
+        return new DayFragment(columnNum);
     }
 
     @Nullable

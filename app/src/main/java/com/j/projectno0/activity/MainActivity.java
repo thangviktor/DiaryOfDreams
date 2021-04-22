@@ -2,6 +2,7 @@ package com.j.projectno0.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -23,13 +24,13 @@ import com.j.projectno0.Adapter.ViewPagerMainAdapter;
 import com.j.projectno0.R;
 import com.j.projectno0.fragment.DayFragment;
 import com.j.projectno0.fragment.NightFragment;
+import com.j.projectno0.utils.LanguageUtils;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ImageButton addNew, addEmpty;
+    private DrawerLayout drawerLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("ClickableViewAccessibility")
@@ -37,22 +38,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("DDPreferences", MODE_PRIVATE);
+        LanguageUtils.loadLocale(getBaseContext());
+
         setContentView(R.layout.activity_main);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         Toolbar toolbar   = findViewById(R.id.toolbar);
         ViewPager2 vpMain = findViewById(R.id.vpMain);
-        addNew      = findViewById(R.id.addNew);
-        addEmpty    = findViewById(R.id.addEmpty);
+        ImageButton addNew = findViewById(R.id.addNew);
+        ImageButton addEmpty = findViewById(R.id.addEmpty);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setTitle(getString(R.string.app_name));
 
         navigationView.getMenu().findItem(R.id.menu_diaries).setChecked(true);
         ViewPagerMainAdapter vpAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), getLifecycle());
-        vpAdapter.addFragment(DayFragment.newInstance());
+        vpAdapter.addFragment(DayFragment.newInstance(sharedPreferences.getInt("num_of_col", 1)));
         vpAdapter.addFragment(NightFragment.newInstance());
         vpMain.setAdapter(vpAdapter);
 

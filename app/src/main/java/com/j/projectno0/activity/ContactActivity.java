@@ -39,6 +39,7 @@ public class ContactActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setTitle(getString(R.string.app_name));
 
         Database database = new Database(this);
         navigationView.getMenu().findItem(R.id.menu_about).setChecked(true);
