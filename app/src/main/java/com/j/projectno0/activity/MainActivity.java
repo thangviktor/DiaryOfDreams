@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,9 +25,11 @@ import com.j.projectno0.Adapter.ViewPagerMainAdapter;
 import com.j.projectno0.R;
 import com.j.projectno0.fragment.DayFragment;
 import com.j.projectno0.fragment.NightFragment;
-import com.j.projectno0.utils.LanguageUtils;
+import com.j.projectno0.utils.SettingsUtils;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = getSharedPreferences("DDPreferences", MODE_PRIVATE);
-        LanguageUtils.loadLocale(getBaseContext());
+        SettingsUtils.loadSettings(getBaseContext());
 
         setContentView(R.layout.activity_main);
 
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton addEmpty = findViewById(R.id.addEmpty);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
@@ -77,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Open Drawer Layout
         navigationView.setNavigationItemSelectedListener(onNavSelected());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @SuppressLint("NonConstantResourceId")

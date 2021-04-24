@@ -12,11 +12,10 @@ import com.j.projectno0.fragment.NightFragment;
 import java.util.ArrayList;
 
 public class ViewPagerMainAdapter extends FragmentStateAdapter {
-    private static final ArrayList<Fragment> fragments = new ArrayList<>();
+    private final ArrayList<Fragment> fragments = new ArrayList<>();
 
     public ViewPagerMainAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
-        fragments.clear();
     }
 
     @NonNull

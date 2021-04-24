@@ -3,11 +3,8 @@ package com.j.projectno0.fragment;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +27,7 @@ import com.j.projectno0.data.Diary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -76,12 +74,6 @@ public class BaseFragment extends Fragment {
         searchView.setOnCloseListener(onSearchClose());
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main, menu);
-    }
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -97,11 +89,14 @@ public class BaseFragment extends Fragment {
                 break;
         }
         gridViewDiary.setNumColumns(columnNum);
-        SharedPreferences.Editor editor = getActivity()
-                .getSharedPreferences("DDPreferences", MODE_PRIVATE)
-                .edit();
-        editor.putInt("num_of_col", columnNum);
-        editor.apply();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(getActivity())
+                    .getSharedPreferences("DDPreferences", MODE_PRIVATE)
+                    .edit()
+                    .putInt("num_of_col", columnNum)
+                    .apply();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -113,22 +108,22 @@ public class BaseFragment extends Fragment {
 
                 final Diary diary = diaries.get(position);
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage(getString(R.string.delete) + " \"" + diary.getTitle() + "\" ?");
-                builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        deleteDiary(diary.getId());
-                    }
-                });
-                builder.setNegativeButton(android.R.string.cancel, null);
-                builder.show();
+                builder.setMessage(getString(R.string.delete) + " \"" + diary.getTitle() + "\" ?")
+                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteDiary(diary.getId());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
 
                 return true;
             }
         };
     }
 
-    private AdapterView.OnItemClickListener onDiaryItemClick()  {
+    private AdapterView.OnItemClickListener onDiaryItemClick() {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

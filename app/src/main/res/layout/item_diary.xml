@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin_small"
-    android:background="@drawable/custom_listview"
+    android:background="@drawable/custom_item_diary"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_big"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorTitle"
         android:text="@string/title"
         android:singleLine="true"/>
 
@@ -20,13 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/content"
+        android:textColor="@color/colorBlur"
         android:singleLine="true"/>
 
     <TextView
         android:id="@+id/listdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorNormal"
         android:text="@string/date"
         android:singleLine="true"/>
 

@@ -17,7 +17,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:textColor">@color/colorNormal</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
     </style>
@@ -43,7 +43,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textColor">@color/colorNormal</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

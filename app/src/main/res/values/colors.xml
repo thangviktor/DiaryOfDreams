@@ -2,8 +2,14 @@
 <resources>
     <color name="colorPrimary">#00CA51</color>
     <color name="colorPrimaryDark">#17A356</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="infor_background">@color/colorPrimary</color>
-    <color name="feedback_background">@color/colorPrimary</color>
-    <color name="setting_background">@color/colorPrimary</color>
+    <color name="colorAccent">#03D3DA</color>
+
+    <color name="colorTitle">#00B548</color>
+    <color name="colorNormal">@android:color/black</color>
+    <color name="colorBlur">#595959</color>
+    <color name="colorHint">#818181</color>
+
+    <color name="colorEditBackground">#00DA57</color>
+    <color name="colorBackground">@android:color/white</color>
+    <color name="colorSpecBackground">#ECECEC</color>
 </resources>

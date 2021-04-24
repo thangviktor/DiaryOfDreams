@@ -19,7 +19,7 @@
     <string name="delete">Xoá</string>
     <string name="saved">Đã lưu</string>
     <string name="filter">Lọc</string>
-    <string name="clear_list">Clear List</string>
+    <string name="clear_list">Xoá danh sách</string>
 
     <string name="diaries">Nhật ký</string>
     <string name="day">Ngày</string>
@@ -32,14 +32,26 @@
         ]]>
     </string>
 
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string-array name="themes">
+        <item>Nature</item>
+        <item>Sky</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
     <string name="display">Hiển thị</string>
-    <string name="language">Chọn ngôn ngữ</string>
-    <string name="theme">Chọn giao diện</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="theme">Giao diện</string>
+    <string name="reset">Khôi phục cài đặt gốc</string>
 
     <string-array name="languages">
         <item>Tiếng Việt</item>
         <item>Tiếng Anh</item>
+    </string-array>
+
+    <string-array name="languages_code">
+        <item>vi</item>
+        <item>en</item>
     </string-array>
 
 </resources>

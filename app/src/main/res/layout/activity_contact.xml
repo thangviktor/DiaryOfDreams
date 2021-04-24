@@ -42,12 +42,14 @@
                 android:id="@+id/tvDiariesNum"
                 style="@style/AppInfor"
                 android:text="@string/diaries_num"
+                android:textColor="@android:color/white"
                 android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/appInfor"
                 style="@style/AppInfor"
                 android:text="@string/app_infor"
+                android:textColor="@android:color/white"
                 android:layout_marginBottom="@dimen/margin_standard" />
 
         </LinearLayout>
