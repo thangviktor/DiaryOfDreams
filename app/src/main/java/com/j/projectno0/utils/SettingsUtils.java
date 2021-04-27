@@ -26,22 +26,21 @@ public class SettingsUtils {
     private static final SharedPreferences sharedPreferences =
             App.getContext().getSharedPreferences("DDPreferences", MODE_PRIVATE);
 
-    public static void loadSettings(Context context) {
+    public static void loadSettings(Resources resources) {
         if (!sharedPreferences.getBoolean(RESET, false)) {
-            changeLanguage(context, sharedPreferences.getString(LANGUAGE, defaultLang));
+            changeLanguage(resources, sharedPreferences.getString(LANGUAGE, defaultLang));
             changeMode(sharedPreferences.getInt(MODE, AppCompatDelegate.getDefaultNightMode()));
         }
     }
 
-    public static void resetSettings(Context context) {
+    public static void resetSettings(Resources resources) {
         Log.d("LanguageLog", "reset = " + sharedPreferences.getBoolean(RESET, false));
-        changeLanguage(context, defaultLang);
+        changeLanguage(resources, defaultLang);
         changeMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         sharedPreferences.edit().putBoolean(RESET, true).apply();
     }
 
-    public static void changeLanguage(Context context, String languageCode) {
-        Resources resources = context.getResources();
+    public static void changeLanguage(Resources resources, String languageCode) {
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(new Locale(languageCode));
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());

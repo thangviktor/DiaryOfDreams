@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = getSharedPreferences("DDPreferences", MODE_PRIVATE);
-        SettingsUtils.loadSettings(getBaseContext());
+        SettingsUtils.loadSettings(getResources());
 
         setContentView(R.layout.activity_main);
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
         navigationView.getMenu().findItem(R.id.menu_diaries).setChecked(true);

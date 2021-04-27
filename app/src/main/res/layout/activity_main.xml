@@ -24,7 +24,7 @@
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/add" />
+            app:srcCompat="@drawable/ic_add" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addEmpty"
@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/add"
+            app:srcCompat="@drawable/ic_add"
             tools:ignore="UnusedAttribute" />
 
         <androidx.appcompat.widget.Toolbar
@@ -86,8 +86,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconTint="@color/item_drawer"
-        app:itemTextColor="@color/item_drawer"
+        app:itemIconTint="@color/item_drawer_check"
+        app:itemTextColor="@color/item_drawer_check"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_drawer_actions" />
 

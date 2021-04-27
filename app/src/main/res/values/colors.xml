@@ -9,7 +9,9 @@
     <color name="colorBlur">#595959</color>
     <color name="colorHint">#818181</color>
 
-    <color name="colorEditBackground">#00DA57</color>
     <color name="colorBackground">@android:color/white</color>
+    <color name="colorEditBackground">#00DA57</color>
     <color name="colorSpecBackground">#ECECEC</color>
+
+    <color name="colorPress">#D5D5D5</color>
 </resources>

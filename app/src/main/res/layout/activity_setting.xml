@@ -38,7 +38,7 @@
             android:layout_height="@dimen/margin_bigger"
             android:paddingLeft="@dimen/margin_standard"
             android:paddingRight="@dimen/margin_standard"
-            android:background="@color/item_settings"
+            android:background="@color/item_settings_press"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|end"
-                android:background="@color/item_settings"
+                android:background="@color/item_settings_press"
                 android:text="@string/language"
                 android:textColor="@color/colorNormal"
                 android:textSize="@dimen/text_size_standard"
@@ -67,7 +67,7 @@
         android:layout_height="@dimen/margin_bigger"
         android:paddingLeft="@dimen/margin_standard"
         android:paddingRight="@dimen/margin_standard"
-        android:background="@color/item_settings"
+        android:background="@color/item_settings_press"
         android:orientation="horizontal">
 
         <TextView
@@ -96,19 +96,19 @@
             android:background="@color/colorSpecBackground"/>
 
         <LinearLayout
+            android:id="@+id/llReset"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_big"
             android:paddingLeft="@dimen/margin_standard"
             android:gravity="center_vertical"
-            android:background="@drawable/custom_spec_view">
+            android:background="@drawable/item_spec_settings_press">
 
             <TextView
                 android:id="@+id/tvReset"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:background="@color/item_settings"
                 android:text="@string/reset"
                 android:textColor="@color/colorTitle"
                 android:textSize="@dimen/text_size_big"/>

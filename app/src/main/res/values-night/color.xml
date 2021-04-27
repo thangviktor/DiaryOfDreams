@@ -11,4 +11,6 @@
     <color name="colorEditBackground">#002F81</color>
     <color name="colorBackground">@android:color/black</color>
     <color name="colorSpecBackground">#353535</color>
+
+    <color name="colorPress">#505050</color>
 </resources>

@@ -3,8 +3,10 @@ package com.j.projectno0.activity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.j.projectno0.R;
-import com.j.projectno0.utils.Mode;
 import com.j.projectno0.utils.SettingsUtils;
 
 import java.util.Objects;
@@ -37,7 +38,9 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getResources().getConfiguration().
+        Log.d("LanguageLog", "default Lang: " + getResources().getConfiguration().locale.getLanguage());
+        SharedPreferences sharedPreferences = getSharedPreferences("DDPreferences", MODE_PRIVATE);
+        Log.d("LanguageLog", "shared Lang: " + sharedPreferences.getString("language", "null"));
         setContentView(R.layout.activity_setting);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -49,7 +52,7 @@ public class SettingActivity extends AppCompatActivity {
 
         ViewGroup llLanguage = findViewById(R.id.llLang);
         ViewGroup llTheme = findViewById(R.id.llTheme);
-        TextView tvReset = findViewById(R.id.tvReset);
+        ViewGroup llReset = findViewById(R.id.llReset);
         tvLanguage = findViewById(R.id.tvLanguage);
         tvTheme = findViewById(R.id.tvTheme);
 
@@ -59,7 +62,7 @@ public class SettingActivity extends AppCompatActivity {
 
         llLanguage.setOnClickListener(onLanguageClick());
         llTheme.setOnClickListener(onThemeClick());
-        tvReset.setOnClickListener(onResetClick());
+        llReset.setOnClickListener(onResetClick());
     }
 
     @Override
@@ -87,7 +90,7 @@ public class SettingActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (i != curLangIndex) {
                                     String changedLang = getResources().getStringArray(R.array.languages_code)[i];
-                                    SettingsUtils.changeLanguage(getBaseContext(), changedLang);
+                                    SettingsUtils.changeLanguage(getResources(), changedLang);
                                     changed = i != curLangIndex;
                                     refreshLayout();
                                 }
@@ -140,7 +143,7 @@ public class SettingActivity extends AppCompatActivity {
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                SettingsUtils.resetSettings(getBaseContext());
+                                SettingsUtils.resetSettings(getResources());
                                 refreshLayout();
                             }
                         })
