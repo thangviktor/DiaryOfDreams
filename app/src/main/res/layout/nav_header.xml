@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:background="@color/colorPrimaryDark">
+    android:background="?attr/colorPrimaryDark">
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_standard"
         android:text="@string/app_name"
-        android:textColor="#E6FFFA"
+        android:textColor="@android:color/white"
         android:textSize="25sp"
         android:fontFamily="@font/iciel_bambola"/>
 </LinearLayout>

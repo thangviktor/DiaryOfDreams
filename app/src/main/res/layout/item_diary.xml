@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_big"
-        android:textColor="@color/colorTitle"
+        android:textColor="?attr/colorTitle"
         android:text="@string/title"
         android:singleLine="true"/>
 
@@ -20,14 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/content"
-        android:textColor="@color/colorBlur"
+        android:textColor="?attr/colorBlur"
         android:singleLine="true"/>
 
     <TextView
         android:id="@+id/listdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorNormal"
+        android:textColor="?attr/colorText"
         android:text="@string/date"
         android:singleLine="true"/>
 

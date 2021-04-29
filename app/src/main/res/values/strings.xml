@@ -34,9 +34,8 @@
 
     <string-array name="themes">
         <item>Nature</item>
-        <item>Sky</item>
-        <item>Light</item>
-        <item>Dark</item>
+        <item>Ocean</item>
+        <item>Night</item>
     </string-array>
 
     <string name="display">Hiển thị</string>

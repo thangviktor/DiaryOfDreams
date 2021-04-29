@@ -3,10 +3,8 @@ package com.j.projectno0.activity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.j.projectno0.R;
@@ -26,10 +22,9 @@ import java.util.Objects;
 
 @SuppressLint("CutPasteId")
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends BaseActivity {
     private int curLangIndex;
-    private int curModeIndex;
-    private int nightMode;
+    private int curThemeIndex;
     private Boolean changed;
 
     private TextView tvLanguage;
@@ -38,9 +33,6 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("LanguageLog", "default Lang: " + getResources().getConfiguration().locale.getLanguage());
-        SharedPreferences sharedPreferences = getSharedPreferences("DDPreferences", MODE_PRIVATE);
-        Log.d("LanguageLog", "shared Lang: " + sharedPreferences.getString("language", "null"));
         setContentView(R.layout.activity_setting);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -57,8 +49,9 @@ public class SettingActivity extends AppCompatActivity {
         tvTheme = findViewById(R.id.tvTheme);
 
         changed = getIntent().getBooleanExtra("changed", false);
-        setMode();
         setLanguage();
+        curThemeIndex = SettingsUtils.getThemeIndex();
+        tvTheme.setText(getResources().getStringArray(R.array.themes)[curThemeIndex]);
 
         llLanguage.setOnClickListener(onLanguageClick());
         llTheme.setOnClickListener(onThemeClick());
@@ -68,13 +61,19 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (changed) {
-                startActivity(new Intent(this, MainActivity.class));
-                overridePendingTransition(R.anim.anim_exit, R.anim.anim_enter);
-            }
-            finish();
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (changed) {
+            startActivity(new Intent(this, MainActivity.class));
+            overridePendingTransition(R.anim.anim_exit, R.anim.anim_enter);
+        }
+        finish();
     }
 
     /********************************** Event Function ********************************************/
@@ -109,21 +108,12 @@ public class SettingActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setTitle(getString(R.string.theme));
                 builder.setSingleChoiceItems(getResources().getStringArray(R.array.themes),
-                        curModeIndex, new DialogInterface.OnClickListener() {
+                        curThemeIndex, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                switch (i) {
-                                    case 2:
-                                        nightMode = AppCompatDelegate.MODE_NIGHT_NO;
-                                        break;
-                                    case 3:
-                                        nightMode = AppCompatDelegate.MODE_NIGHT_YES;
-                                        break;
-                                }
-                                if (nightMode != AppCompatDelegate.getDefaultNightMode()) {
-                                    SettingsUtils.changeMode(nightMode);
-                                    tvTheme.setText(getResources().getStringArray(R.array.themes)[i]);
-                                    changed = nightMode != AppCompatDelegate.getDefaultNightMode();
+                                if (i != curThemeIndex) {
+                                    SettingsUtils.changeTheme(i);
+                                    changed = i != curThemeIndex;
                                     refreshLayout();
                                 }
                                 dialogInterface.cancel();
@@ -170,19 +160,5 @@ public class SettingActivity extends AppCompatActivity {
                 curLangIndex = i;
         }
         tvLanguage.setText(getResources().getStringArray(R.array.languages)[curLangIndex]);
-    }
-
-    private void setMode() {
-        switch (AppCompatDelegate.getDefaultNightMode()) {
-            case AppCompatDelegate.MODE_NIGHT_NO:
-                curModeIndex = 2;
-                break;
-            case AppCompatDelegate.MODE_NIGHT_YES:
-                curModeIndex = 3;
-                break;
-            default:
-                curModeIndex = 0;
-        }
-        tvTheme.setText(getResources().getStringArray(R.array.themes)[curModeIndex]);
     }
 }

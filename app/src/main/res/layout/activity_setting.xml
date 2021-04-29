@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_height"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/margin_standard"
             android:gravity="center_vertical"
             android:text="@string/display"
-            android:textColor="@color/colorTitle"
+            android:textColor="?attr/colorTitle"
             android:textSize="@dimen/text_size_big"/>
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="@string/language"
-                android:textColor="@color/colorNormal"
+                android:textColor="?attr/colorText"
                 android:textSize="@dimen/text_size_standard"
                 android:layout_weight="1"/>
             <TextView
@@ -55,7 +55,7 @@
                 android:gravity="center_vertical|end"
                 android:background="@color/item_settings_press"
                 android:text="@string/language"
-                android:textColor="@color/colorNormal"
+                android:textColor="?attr/colorText"
                 android:textSize="@dimen/text_size_standard"
                 android:layout_weight="1"/>
         </LinearLayout>
@@ -75,7 +75,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/theme"
-            android:textColor="@color/colorNormal"
+            android:textColor="?attr/colorText"
             android:textSize="@dimen/text_size_standard"
             android:layout_weight="1"/>
         <TextView
@@ -84,7 +84,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical|end"
             android:text="@string/theme"
-            android:textColor="@color/colorNormal"
+            android:textColor="?attr/colorText"
             android:textSize="@dimen/text_size_standard"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/margin_standard"
-            android:background="@color/colorSpecBackground"/>
+            android:background="?attr/colorSpecBackground"/>
 
         <LinearLayout
             android:id="@+id/llReset"
@@ -110,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="@string/reset"
-                android:textColor="@color/colorTitle"
+                android:textColor="?attr/colorTitle"
                 android:textSize="@dimen/text_size_big"/>
         </LinearLayout>
 

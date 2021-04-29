@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimary" format="color"/>
+    <attr name="colorPrimaryDark" format="color"/>
+    <attr name="colorAccent" format="color"/>
+
+    <attr name="colorTitle" format="color"/>
+    <attr name="colorText" format="color"/>
+    <attr name="colorBlur" format="color"/>
+    <attr name="colorHint" format="color"/>
+
+    <attr name="colorBackground" format="color"/>
+    <attr name="colorEditBackground" format="color"/>
+    <attr name="colorSpecBackground" format="color"/>
+
+    <attr name="colorPress" format="color"/>
+
+</resources>

@@ -3,8 +3,10 @@ package com.j.projectno0.fragment;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,8 +20,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.j.projectno0.Adapter.DiaryAdapter;
+import com.j.projectno0.Adapter.ViewPagerMainAdapter;
 import com.j.projectno0.R;
 import com.j.projectno0.activity.EditActivity;
 import com.j.projectno0.data.Database;
@@ -31,9 +35,13 @@ import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class BaseFragment extends Fragment {
 
-    protected int columnNum = 1;
+public class MainFragment extends Fragment {
+    protected static final String SEARCHED_TEXT = "searchedText";
+    private SharedPreferences sharedPreferences;
+    private int currentFrag = 0;
+
+    protected int columnNum = 0;
 
     protected Database database;
     protected final ArrayList<Diary> diaries = new ArrayList<>();
@@ -44,24 +52,16 @@ public class BaseFragment extends Fragment {
     protected ImageButton addNew, addEmpty;
     protected SearchView searchView;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Display diaries
-        database = new Database(getContext());
-        addToDiaryList(database.getAllDiary());
-        adapterDiary = new DiaryAdapter(getContext(), R.layout.item_diary, diaries);
-        gridViewDiary.setAdapter(adapterDiary);
-
-        displayAddButton();
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
+
+        sharedPreferences = getActivity().getSharedPreferences("DDPreferences", MODE_PRIVATE);
+        columnNum = sharedPreferences.getInt("num_of_col", 1);
+
+        displayAddButton();
 
         gridViewDiary.setNumColumns(columnNum);
 
@@ -69,9 +69,7 @@ public class BaseFragment extends Fragment {
         gridViewDiary.setOnItemClickListener(onDiaryItemClick());
         gridViewDiary.setOnItemLongClickListener(onDiaryItemLongClick());
 
-        // Search
-        searchView.setOnQueryTextListener(onSearchQueryText());
-        searchView.setOnCloseListener(onSearchClose());
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -135,43 +133,6 @@ public class BaseFragment extends Fragment {
         };
     }
 
-    private SearchView.OnQueryTextListener onSearchQueryText() {
-        return new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String searchedText) {
-                addToDiaryList(database.getAllDiary());
-                if (diaries.size() > 0) {
-                    searchedList.clear();
-                    for (Diary diary : diaries) {
-                        if (diary.getTitle().contains(searchedText)
-                                || diary.getContent().contains(searchedText)
-                                || diary.getDate().contains(searchedText)) {
-                            searchedList.add(diary);
-                        }
-                    }
-                    addToDiaryList(searchedList);
-                    adapterDiary.loadList(searchedText);
-                }
-                return false;
-            }
-        };
-    }
-
-    private SearchView.OnCloseListener onSearchClose() {
-        return new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                adapterDiary.loadAnimation();
-                return false;
-            }
-        };
-    }
-
     /*************************************** Class Function ***************************************/
     private void showPopupFilter() {
         final View popupView = getActivity().findViewById(R.id.menu_filter);
@@ -214,4 +175,5 @@ public class BaseFragment extends Fragment {
             addNew.setVisibility(View.VISIBLE);
         }
     }
+
 }

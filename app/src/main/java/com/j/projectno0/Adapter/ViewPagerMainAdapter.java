@@ -1,5 +1,7 @@
 package com.j.projectno0.Adapter;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,7 +14,6 @@ import com.j.projectno0.fragment.NightFragment;
 import java.util.ArrayList;
 
 public class ViewPagerMainAdapter extends FragmentStateAdapter {
-    private final ArrayList<Fragment> fragments = new ArrayList<>();
 
     public ViewPagerMainAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -21,15 +22,18 @@ public class ViewPagerMainAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return fragments.get(position);
+        Log.d("SearchLog", "position = " + position);
+        if (position == 0) {
+            return DayFragment.newInstance();
+        } else {
+            return NightFragment.newInstance();
+        }
     }
+
+
 
     @Override
     public int getItemCount() {
-        return fragments.size();
-    }
-
-    public void addFragment(Fragment fragment) {
-        fragments.add(fragment);
+        return 2;
     }
 }

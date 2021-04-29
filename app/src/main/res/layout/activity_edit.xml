@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorEditBackground"
+    android:background="?attr/colorEditBackground"
     tools:context=".activity.EditActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_height"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -28,7 +28,7 @@
             android:layout_height="@dimen/tab_height"
             android:paddingLeft="@dimen/margin_small"
             android:paddingTop="@dimen/margin_small"
-            android:textColor="@color/colorNormal"
+            android:textColor="?attr/colorText"
             android:background="@drawable/custom_edit_view"
             tools:ignore="RtlHardcoded,RtlSymmetry" />
 
@@ -39,11 +39,11 @@
             android:layout_marginTop="@dimen/margin_standard"
             android:background="@drawable/custom_edit_view"
             android:hint="@string/title"
-            android:textColorHint="@color/colorHint"
+            android:textColorHint="?attr/colorHint"
             android:inputType="textMultiLine"
             android:paddingLeft="@dimen/margin_small"
             android:paddingRight="@dimen/margin_small"
-            android:textColor="@color/colorNormal"
+            android:textColor="?attr/colorText"
             android:importantForAutofill="no" />
 
         <EditText
@@ -55,9 +55,9 @@
             android:background="@drawable/custom_edit_view"
             android:gravity="start|top"
             android:hint="@string/content"
-            android:textColorHint="@color/colorHint"
+            android:textColorHint="?attr/colorHint"
             android:inputType="textMultiLine"
-            android:textColor="@color/colorNormal"
+            android:textColor="?attr/colorText"
             android:importantForAutofill="no" />
     </LinearLayout>
 

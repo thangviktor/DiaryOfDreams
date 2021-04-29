@@ -21,7 +21,7 @@ import com.j.projectno0.data.Database;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends BaseActivity {
     DrawerLayout drawerLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

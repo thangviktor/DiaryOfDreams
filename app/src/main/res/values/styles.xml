@@ -1,10 +1,55 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppThemeNature" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#00CA51</item>
+        <item name="colorPrimaryDark">#17A356</item>
+        <item name="colorAccent">#03D3DA</item>
+
+        <item name="colorTitle">#00B548</item>
+        <item name="colorText">@android:color/black</item>
+        <item name="colorBlur">#595959</item>
+        <item name="colorHint">#818181</item>
+
+        <item name="colorBackground">@android:color/white</item>
+        <item name="colorEditBackground">#00DA57</item>
+        <item name="colorSpecBackground">#ECECEC</item>
+
+        <item name="colorPress">#D5D5D5</item>
+        
+    </style>
+
+    <style name="AppThemeSky" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0058F1</item>
+        <item name="colorPrimaryDark">#2876B8</item>
+        <item name="colorAccent">#039DDA</item>
+
+        <item name="colorTitle">#1F69FF</item>
+        <item name="colorText">@android:color/black</item>
+        <item name="colorBlur">#595959</item>
+
+        <item name="colorBackground">@android:color/white</item>
+        <item name="colorEditBackground">#004DD5</item>
+        <item name="colorSpecBackground">#ECECEC</item>
+
+        <item name="colorPress">#D5D5D5</item>
+
+    </style>
+
+    <style name="AppThemeNight" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#0058F1</item>
+        <item name="colorPrimaryDark">#2876B8</item>
+        <item name="colorAccent">#039DDA</item>
+
+        <item name="colorTitle">#6497FD</item>
+        <item name="colorText">@android:color/white</item>
+        <item name="colorBlur">#D5D5D5</item>
+
+        <item name="colorEditBackground">#002F81</item>
+        <item name="colorBackground">@android:color/black</item>
+        <item name="colorSpecBackground">#353535</item>
+
+        <item name="colorPress">#505050</item>
+
     </style>
 
     <style name="EmptyNote">
@@ -16,8 +61,8 @@
     <style name="AppInfor">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@color/colorNormal</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorText</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
     </style>
@@ -43,7 +88,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/colorNormal</item>
+        <item name="android:textColor">?attr/colorText</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
