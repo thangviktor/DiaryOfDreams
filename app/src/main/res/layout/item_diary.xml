@@ -13,7 +13,7 @@
         android:textSize="@dimen/text_size_big"
         android:textColor="?attr/colorTitle"
         android:text="@string/title"
-        android:singleLine="true"/>
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/listcontent"

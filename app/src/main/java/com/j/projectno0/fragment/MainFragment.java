@@ -1,7 +1,6 @@
 package com.j.projectno0.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -20,14 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.j.projectno0.Adapter.DiaryAdapter;
-import com.j.projectno0.Adapter.ViewPagerMainAdapter;
 import com.j.projectno0.R;
 import com.j.projectno0.activity.EditActivity;
+import com.j.projectno0.adapter.DiaryAdapter;
 import com.j.projectno0.data.Database;
 import com.j.projectno0.data.Diary;
+import com.j.projectno0.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +35,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class MainFragment extends Fragment {
-    protected static final String SEARCHED_TEXT = "searchedText";
-    private SharedPreferences sharedPreferences;
-    private int currentFrag = 0;
-
     protected int columnNum = 0;
 
     protected Database database;
@@ -58,7 +52,7 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
 
-        sharedPreferences = getActivity().getSharedPreferences("DDPreferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("DDPreferences", MODE_PRIVATE);
         columnNum = sharedPreferences.getInt("num_of_col", 1);
 
         displayAddButton();
@@ -100,57 +94,67 @@ public class MainFragment extends Fragment {
 
     /*************************************** Event Click ******************************************/
     private AdapterView.OnItemLongClickListener onDiaryItemLongClick() {
-        return new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        return (parent, view, position, id) -> {
 
-                final Diary diary = diaries.get(position);
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage(getString(R.string.delete) + " \"" + diary.getTitle() + "\" ?")
-                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                deleteDiary(diary.getId());
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .show();
+            final Diary diary = diaries.get(position);
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage(getString(R.string.delete) + " \"" + diary.getTitle() + "\" ?")
+                    .setPositiveButton(R.string.delete, (dialog, which) -> deleteDiary(diary.getId()))
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
 
-                return true;
-            }
+            return true;
         };
     }
 
     private AdapterView.OnItemClickListener onDiaryItemClick() {
-        return new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Diary diary = diaries.get(position);
-                Intent intent = new Intent(view.getContext(), EditActivity.class);
-                intent.putExtra("diary", diary);
-                startActivity(intent);
-            }
+        return (parent, view, position, id) -> {
+            Diary diary = diaries.get(position);
+            Intent intent = new Intent(view.getContext(), EditActivity.class);
+            intent.putExtra("diary", diary);
+            startActivity(intent);
         };
     }
 
     /*************************************** Class Function ***************************************/
+    @SuppressLint("NonConstantResourceId")
     private void showPopupFilter() {
         final View popupView = getActivity().findViewById(R.id.menu_filter);
         PopupMenu popupMenu = new PopupMenu(getContext(), popupView);
         popupMenu.inflate(R.menu.menu_filter);
         popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.clearAll) {
+        popupMenu.setOnMenuItemClickListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.clearList:
                     database.deleteAllDiary();
                     diaries.clear();
                     adapterDiary.notifyDataSetChanged();
                     displayAddButton();
-                }
-                return false;
+                    break;
+                case R.id.sortDate:
+                    sortByDate();
+                    break;
             }
+            return false;
         });
+    }
+
+    private void sortByDate() {
+        List<Diary> rawList = database.getAllDiary();
+        for (int i = 0; i < rawList.size()-1; i++) {
+            long max = TimeUtils.getTimeMillis(rawList.get(i).getDate());
+            for (int j = i+1; j < rawList.size(); j++)
+                if (TimeUtils.getTimeMillis(rawList.get(j).getDate()) > max) {
+                    max = TimeUtils.getTimeMillis(rawList.get(j).getDate());
+                    Diary diary = rawList.get(j);
+                    rawList.set(j, rawList.get(i));
+                    rawList.set(i, diary);
+                }
+        }
+        for (Diary diary : rawList)
+            Log.d("SORTLOG", diary.getTitle() + ", date: " + diary.getDate());
+        addToDiaryList(rawList);
+        adapterDiary.notifyDataSetChanged();
     }
 
     protected void addToDiaryList(List<Diary> list) {

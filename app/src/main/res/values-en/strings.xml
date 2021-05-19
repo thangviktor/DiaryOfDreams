@@ -38,4 +38,5 @@
         <item>Vietnamese</item>
         <item>English</item>
     </string-array>
+    <string name="sort_date">Sort by date</string>
 </resources>

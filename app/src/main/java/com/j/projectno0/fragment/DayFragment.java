@@ -11,18 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.j.projectno0.Adapter.DiaryAdapter;
+import com.j.projectno0.adapter.DiaryAdapter;
 import com.j.projectno0.R;
-import com.j.projectno0.TextSearching;
 import com.j.projectno0.activity.MainActivity;
 import com.j.projectno0.data.Database;
 import com.j.projectno0.data.Diary;
 
 public class DayFragment extends MainFragment {
-
-    public static DayFragment newInstance() {
-        return new DayFragment();
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Nullable
@@ -41,13 +36,6 @@ public class DayFragment extends MainFragment {
         addToDiaryList(database.getAllDiary());
         adapterDiary.notifyDataSetChanged();
 
-        ((MainActivity)getActivity()).setTextSearchingDay(new TextSearching.Day() {
-            @Override
-            public void loadSearchedList(String searchedText) {
-                showSearchedList(searchedText);
-            }
-        });
-
         return root;
     }
 
@@ -57,7 +45,7 @@ public class DayFragment extends MainFragment {
     }
 
     //*************************************** Event Click ******************************************
-    private void showSearchedList(String searchedText) {
+    public void loadSearchedList(String searchedText) {
         addToDiaryList(database.getAllDiary());
         if (diaries.size() > 0) {
             Log.d("SearchLog", "tab 1: searchedText = " + searchedText);

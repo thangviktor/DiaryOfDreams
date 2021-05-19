@@ -1,26 +1,26 @@
-package com.j.projectno0.Adapter;
+package com.j.projectno0.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.j.projectno0.data.Diary;
 import com.j.projectno0.R;
+import com.j.projectno0.data.Diary;
 
 import java.util.ArrayList;
 
 public class DiaryAdapter extends BaseAdapter {
-    private Boolean anim = true;
+//    private Boolean anim = true;
     private String searchedText = "";
+    private Boolean ellipSizeStart = false;
 
     private final Context context;
     private final int layout;
@@ -49,15 +49,15 @@ public class DiaryAdapter extends BaseAdapter {
 
     public void loadList(String searchedText) {
         this.searchedText = searchedText;
-        anim = false;
+//        anim = false;
         notifyDataSetChanged();
     }
 
-    public void loadAnimation() {
-        searchedText = "";
-        anim = true;
-        notifyDataSetChanged();
-    }
+//    public void loadAnimation() {
+//        searchedText = "";
+//        anim = true;
+//        notifyDataSetChanged();
+//    }
 
     private static class ViewHolder {
         TextView date, title, content;
@@ -87,6 +87,11 @@ public class DiaryAdapter extends BaseAdapter {
             if (diary.getContent().contains(searchedText)) {
                 SpannableString string = getSearchedString(diary.getContent(), searchedText);
                 holder.content.setText(string);
+                if (ellipSizeStart) {
+                    holder.content.setEllipsize(TextUtils.TruncateAt.START);
+                    ellipSizeStart = false;
+                }
+
             }
             if (diary.getTitle().contains(searchedText)) {
                 SpannableString string = getSearchedString(diary.getTitle(), searchedText);
@@ -102,16 +107,25 @@ public class DiaryAdapter extends BaseAdapter {
 //            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim_view);
 //            convertView.startAnimation(animation);
 //        }
-
         return convertView;
     }
 
     private SpannableString getSearchedString(String text, String searchedText) {
+        int index = text.indexOf(searchedText);
+
+        // check if index of searchedText great than length of displayed text
+        if (index > 40 || text.lastIndexOf(searchedText) - index > 40) {
+            if (text.length() - index < 40)
+                ellipSizeStart = true;
+            else text = "..." + text.substring(index);
+            index = text.indexOf(searchedText);
+        }
+
         SpannableString string = new SpannableString(text);
-        if (text.contains(searchedText)) {
-            int start = text.indexOf(searchedText);
-            string.setSpan(new ForegroundColorSpan(Color.RED), start, start + searchedText.length(),
+        while (index >= 0) {
+            string.setSpan(new ForegroundColorSpan(Color.RED), index, index + searchedText.length(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            index = text.indexOf(searchedText, index + searchedText.length());
         }
         return string;
     }

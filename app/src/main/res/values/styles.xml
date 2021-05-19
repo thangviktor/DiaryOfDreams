@@ -93,6 +93,10 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="TextAppearance.Design.Tab.LowerCase">
+        <item name="textAllCaps">false</item>
+    </style>
 
 
 </resources>

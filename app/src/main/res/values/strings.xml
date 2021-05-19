@@ -20,6 +20,7 @@
     <string name="saved">Đã lưu</string>
     <string name="filter">Lọc</string>
     <string name="clear_list">Xoá danh sách</string>
+    <string name="sort_date">Sắp xếp theo thời gian</string>
 
     <string name="diaries">Nhật ký</string>
     <string name="day">Ngày</string>

@@ -11,21 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.j.projectno0.Adapter.DiaryAdapter;
+import com.j.projectno0.adapter.DiaryAdapter;
 import com.j.projectno0.R;
-import com.j.projectno0.TextSearching;
 import com.j.projectno0.activity.MainActivity;
 import com.j.projectno0.data.Database;
 import com.j.projectno0.data.Diary;
 
 public class NightFragment extends MainFragment {
-
-    public NightFragment() {
-    }
-
-    public static NightFragment newInstance() {
-        return new NightFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,13 +42,6 @@ public class NightFragment extends MainFragment {
         addToDiaryList(database.getAllDiary());
         adapterDiary.notifyDataSetChanged();
 
-        ((MainActivity)getActivity()).setTextSearchingNight(new TextSearching.Night() {
-            @Override
-            public void loadSearchedList(String searchedText) {
-                showSearchedList(searchedText);
-            }
-        });
-
         return root;
     }
 
@@ -73,7 +58,7 @@ public class NightFragment extends MainFragment {
     }
 
     //*************************************** Event Click ******************************************
-    private void showSearchedList(String searchedText) {
+    public void loadSearchedList(String searchedText) {
         addToDiaryList(database.getAllDiary());
         if (diaries.size() > 0) {
             Log.d("SearchLog", "tab 2: searchedText = " + searchedText);
